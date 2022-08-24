@@ -74,5 +74,8 @@
     "chalk": "^4.1.2",
     "child_process": "^1.0.2",
     "commander": "^8.1.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@digikala"
   }
 }
