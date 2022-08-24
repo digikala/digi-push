@@ -76,6 +76,6 @@
     "commander": "^8.1.0"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@digikala"
+    "@digikala:registry": "https://npm.pkg.github.com"
   }
 }
