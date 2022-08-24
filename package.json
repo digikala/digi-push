@@ -1,5 +1,5 @@
 {
-  "name": "@digikala/react-native-code-push",
+  "name": "@digikala/digi-push",
   "version": "1.2.1",
   "description": "React Native plugin for the DigiCodePush service",
   "homepage": "https://github.com/digikala",
