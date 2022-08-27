@@ -7,7 +7,7 @@
     "module": "CommonJS",
     "noEmit": true,
     "paths": {
-      "@digikala/react-native-code-push": ["../src"]
+      "@digikala/digi-push": ["../src"]
     },
     "skipLibCheck": true,
     "strict": true,
