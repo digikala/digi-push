@@ -30,7 +30,9 @@
     "jest": "^27.4.7",
     "metro-react-native-babel-preset": "^0.67.0",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "shell-quote": "^1.7.3",
+    "hermes-engine": "^0.10.0"
   },
   "resolutions": {
     "@types/react": "^17"
