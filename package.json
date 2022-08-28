@@ -76,7 +76,8 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "child_process": "^1.0.2",
-    "commander": "^8.1.0"
+    "commander": "^8.1.0",
+    "pre-commit": "^1.2.2"
   },
   "publishConfig": {
     "@digikala:registry": "https://npm.pkg.github.com"
