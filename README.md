@@ -1,100 +1,91 @@
-# digi-push for React Native
+# digikala/digi-push for React Native
 
-**CodePush**  is a cloud service that enables Cordova and React Native developers to deploy mobile app updates directly to their users devices..
-
-**digikala/digi-push**  is a derived from CodePush. Taking into account the solution to the problems of downloading and uploading the bundle and the desired changes for the users devices.
+**digikala/digi-push** is a derived from [Code Push](https://microsoft.github.io/code-push/). Taking into account the solution to the problems of downloading and uploading the bundle and the desired changes for the users devices.
 
 ## Platforms Supported
 
 - [x] iOS
 - [x] Android
 
-## Getting Started
-
-```
-npm install @digikala/digi-push --registry https://npm.pkg.github.com
-```
-
-## Versioning
-
-This project follows [semantic versioning](https://semver.org/).
-
-**Breaking History:**
-
-Current Version: V1.2.1
-
-**Upcoming:**
-
-Feature is coming :))))
-
 ## Usage
+
+**Installation**
+
+```
+npm i @digikala/digi-push --registry https://npm.pkg.github.com
+```
 
 If you are familiar with [CodePush](https://microsoft.github.io/code-push/), you already know how to use `digikala/digi-push`.
 
 **android**
-Add this function in `MainApplicaion`:
-```jsx
-        override fun getJSBundleFile(): String? {
-            return DigiCodePush.getJSBundleFilePath(this@MainApplication,super.getJSBundleFile())
-        }
+
+Override `getJSBundleFile` method in `MainApplicaion`:
+
+```java
+@Override
+protected String getJSBundleFile() {
+    return DigiCodePush.INSTANCE.getJSBundleFilePath(MainApplication.this, super.getJSBundleFile());
+}
 ```
+
 **ios**
-Add line 8 in `sourceURLForBridge `
-```jsx
+
+Override `sourceURLForBridge` method in `AppDelegate`
+
+```objc
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
- 
-#if DEBUG
-  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-#else
- 
-  return  [DigiCodePush bundleURLWithDefaultUrl:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
- 
-#endif
+    #if DEBUG
+        return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+    #else
+        return  [DigiCodePush bundleURLWithDefaultUrl:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
+    #endif
 }
 ```
+
 **React Native**
-Import the `DigiCodePush ` component from `@digikala/digi-push` and use it like so and It should be noted that for line 10  you must enter your desired domain:
-> **Warning**
-> The response of your desired server should be like this:
-```json
-{
-  "status": 200,
-  "data": {
-    "bundle": {
-      "bundle_url": "https://dkstatics-public.digikala.com/digikala-static/acc9393fc392da30528749393e78bcf78caf3e93_1657447109.zip"
-    }
-  }
-}
-```
+
+Import the `DigiCodePush` from `@digikala/digi-push` and use `DigiCodePush.checkForUpdates` to check and get if new version of bundle exist.
 
 ```jsx
 import { AppRegistry } from 'react-native'
 import { name as appName } from './app.json'
 import App from './src/App'
 import DigiCodePush from '@digikala/digi-push'
-import { bundleCode } from './package.json'
-import VersionInfo from 'react-native-version-info'
-import { Platform } from 'react-native'
 
 DigiCodePush.checkForUpdates(
-  `https://demo-sirius.digikala.com/v1/bundle/?code=${bundleCode}`,
-  {
-    headers: {
-      Client: Platform.OS,
-      ApplicationVersion: VersionInfo.buildVersion.toString(),
-    },
-  }
+  server_url, //your desired server url
+  request_options //your desired request options like headers and ...
 )
 
 AppRegistry.registerComponent(appName, () => App)
 ```
-**Bundle**
-To create the desired bundle to be set on the server, enter the following command in the root of the project:
-```
-npx digi-push bundle -o ~/Desktop -p android
+
+> **Warning**
+> The response of your desired server should be like this:
+
+```json
+{
+  "status": 200,
+  "data": {
+    "bundle": {
+      "bundle_url": "platform specific bundle.zip"
+    }
+  }
+}
 ```
 
+## CLI
+
+Command Line Interface (CLI) for `digikala/digi-push`.
+
+**Bundle**
+
+To create the desired bundle to be set on the server, enter the following command in the root of the project:
+
+```
+npx digi-push bundle -o OUTPUT_PATH -p PLATFORM
+```
 
 ## Contributors
 
@@ -109,7 +100,12 @@ Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
+## Versioning
 
+This project follows [semantic versioning](https://semver.org/).
 
+**Upcoming:**
+
+Feature is coming :))))
 
 [lean-core-issue]: https://github.com/facebook/react-native/issues/23313

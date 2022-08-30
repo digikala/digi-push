@@ -63,31 +63,31 @@ const main = async () => {
     await replaceName('digikala/digi-push', 'ravenclaw/app-update')
     await replaceName('digi-push', 'app-update')
     await replaceName('https://npm.pkg.github.com', 'http://localhost:4873')
-    // await spawnCommand(
-    //   'npm',
-    //   ['publish', '--registry', 'http://localhost:4873'],
-    //   {
-    //     cwd: process.cwd(),
-    //     env: process.env,
-    //     stdio: [process.stdin, process.stdout, process.stderr],
-    //     encoding: 'utf-8',
-    //   }
-    // )
+    await spawnCommand(
+      'npm',
+      ['publish', '--registry', 'http://localhost:4873'],
+      {
+        cwd: process.cwd(),
+        env: process.env,
+        stdio: [process.stdin, process.stdout, process.stderr],
+        encoding: 'utf-8',
+      }
+    )
   } else {
     await replaceName('ravenclaw/app-update', 'digikala/digi-push')
     await replaceName('app-update', 'digi-push')
     await replaceName('http://localhost:4873', 'https://npm.pkg.github.com')
 
-    // await spawnCommand(
-    //   'npm',
-    //   ['publish', '--registry', 'https://npm.pkg.github.com'],
-    //   {
-    //     cwd: process.cwd(),
-    //     env: process.env,
-    //     stdio: [process.stdin, process.stdout, process.stderr],
-    //     encoding: 'utf-8',
-    //   }
-    // )
+    await spawnCommand(
+      'npm',
+      ['publish', '--registry', 'https://npm.pkg.github.com'],
+      {
+        cwd: process.cwd(),
+        env: process.env,
+        stdio: [process.stdin, process.stdout, process.stderr],
+        encoding: 'utf-8',
+      }
+    )
   }
 }
 
