@@ -1,9 +1,8 @@
 #! /usr/bin/env node
 
-const cli  =  require('commander')
-const chalk  =  require('chalk')
+const cli = require('commander')
+const chalk = require('chalk')
 const { exec } = require('child_process')
-
 
 const logger = {
   echo(message, level = 0, wrapper = null, asString = false) {
@@ -47,7 +46,6 @@ const logger = {
   },
 }
 
-
 const command = (cmd) => {
   return new Promise((res, rej) => {
     const child = exec(cmd, (err, stdout, stderr) => {
@@ -66,7 +64,7 @@ const command = (cmd) => {
   })
 }
 
-const bundle =  async (options) => {
+const bundle = async (options) => {
   const { outputPath, platform } = options
 
   const dir = `${outputPath}/dg-bundle`.replace('//', '/')
@@ -81,7 +79,6 @@ const bundle =  async (options) => {
     logger.success(`Android Bundling Done!`)
     logger.success(`Path: ${outputPath}/android-bundle.zip`.replace('//', '/'))
   }
-
 
   if (platform === 'ios' || platform === 'both') {
     logger.line()
@@ -98,8 +95,6 @@ const bundle =  async (options) => {
 
   return ''
 }
-
-
 
 cli.description('Digi code push cli')
 cli.name('digi-push')
@@ -122,4 +117,3 @@ cli
   .action(bundle)
 
 cli.parse(process.argv)
-

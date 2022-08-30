@@ -1,6 +1,6 @@
 {
   "name": "@digikala/digi-push",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "React Native plugin for the DigiCodePush service",
   "homepage": "https://github.com/digikala",
   "main": "lib/index.js",
@@ -56,7 +56,10 @@
     "react-test-renderer": "^17.0.2",
     "replace-in-file": "^6.3.5",
     "shell-quote": "^1.7.3",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "chalk": "^4.1.2",
+    "child_process": "^1.0.2",
+    "commander": "^8.1.0"
   },
   "peerDependencies": {
     "react": "*",
@@ -72,14 +75,5 @@
       "json",
       "node"
     ]
-  },
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "child_process": "^1.0.2",
-    "commander": "^8.1.0",
-    "pre-commit": "^1.2.2"
-  },
-  "publishConfig": {
-    "@digikala:registry": "https://npm.pkg.github.com"
   }
 }

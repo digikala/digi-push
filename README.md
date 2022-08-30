@@ -1,4 +1,4 @@
-# digikala/digi-push for React Native
+# digi-push for React Native
 
 **CodePush**  is a cloud service that enables Cordova and React Native developers to deploy mobile app updates directly to their users devices..
 
@@ -12,13 +12,7 @@
 ## Getting Started
 
 ```
-yarn add @digikala/digi-push@1.2.1
-```
-
-or npm:
-
-```
-npm install @digikala/digi-push@1.2.1
+npm install @digikala/digi-push --registry https://npm.pkg.github.com
 ```
 
 ## Versioning
@@ -35,7 +29,72 @@ Feature is coming :))))
 
 ## Usage
 
-writing...
+If you are familiar with [CodePush](https://microsoft.github.io/code-push/), you already know how to use `digikala/digi-push`.
+
+**android**
+Add this function in `MainApplicaion`:
+```jsx
+        override fun getJSBundleFile(): String? {
+            return DigiCodePush.getJSBundleFilePath(this@MainApplication,super.getJSBundleFile())
+        }
+```
+**ios**
+Add line 8 in `sourceURLForBridge `
+```jsx
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+{
+ 
+#if DEBUG
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#else
+ 
+  return  [DigiCodePush bundleURLWithDefaultUrl:[[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]];
+ 
+#endif
+}
+```
+**React Native**
+Import the `DigiCodePush ` component from `@digikala/digi-push` and use it like so and It should be noted that for line 10  you must enter your desired domain:
+> **Warning**
+> The response of your desired server should be like this:
+```json
+{
+  "status": 200,
+  "data": {
+    "bundle": {
+      "bundle_url": "https://dkstatics-public.digikala.com/digikala-static/acc9393fc392da30528749393e78bcf78caf3e93_1657447109.zip"
+    }
+  }
+}
+```
+
+```jsx
+import { AppRegistry } from 'react-native'
+import { name as appName } from './app.json'
+import App from './src/App'
+import DigiCodePush from '@digikala/digi-push'
+import { bundleCode } from './package.json'
+import VersionInfo from 'react-native-version-info'
+import { Platform } from 'react-native'
+
+DigiCodePush.checkForUpdates(
+  `https://demo-sirius.digikala.com/v1/bundle/?code=${bundleCode}`,
+  {
+    headers: {
+      Client: Platform.OS,
+      ApplicationVersion: VersionInfo.buildVersion.toString(),
+    },
+  }
+)
+
+AppRegistry.registerComponent(appName, () => App)
+```
+**Bundle**
+To create the desired bundle to be set on the server, enter the following command in the root of the project:
+```
+npx digi-push bundle -o ~/Desktop -p android
+```
+
 
 ## Contributors
 

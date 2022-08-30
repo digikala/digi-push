@@ -32,6 +32,7 @@ const replaceName = async (oldname, newName) => {
         'README.md',
         'example/tsconfig.json',
         'example/index.js',
+        'bin/index.js',
       ],
       from: new RegExp(oldname, 'g'),
       to: newName,
@@ -61,33 +62,33 @@ const main = async () => {
   if (npmServer === 'digikala') {
     await replaceName('digikala/digi-push', 'ravenclaw/app-update')
     await replaceName('digi-push', 'app-update')
-    await spawnCommand(
-      'npm',
-      ['publish', '--registry', 'http://localhost:4873'],
-      {
-        cwd: process.cwd(),
-        env: process.env,
-        stdio: [process.stdin, process.stdout, process.stderr],
-        encoding: 'utf-8',
-      }
-    )
+    await replaceName('https://npm.pkg.github.com', 'http://localhost:4873')
+    // await spawnCommand(
+    //   'npm',
+    //   ['publish', '--registry', 'http://localhost:4873'],
+    //   {
+    //     cwd: process.cwd(),
+    //     env: process.env,
+    //     stdio: [process.stdin, process.stdout, process.stderr],
+    //     encoding: 'utf-8',
+    //   }
+    // )
   } else {
     await replaceName('ravenclaw/app-update', 'digikala/digi-push')
     await replaceName('app-update', 'digi-push')
-    await spawnCommand(
-      'npm',
-      ['publish', '--registry', 'https://npm.pkg.github.com'],
-      {
-        cwd: process.cwd(),
-        env: process.env,
-        stdio: [process.stdin, process.stdout, process.stderr],
-        encoding: 'utf-8',
-      }
-    )
+    await replaceName('http://localhost:4873', 'https://npm.pkg.github.com')
+
+    // await spawnCommand(
+    //   'npm',
+    //   ['publish', '--registry', 'https://npm.pkg.github.com'],
+    //   {
+    //     cwd: process.cwd(),
+    //     env: process.env,
+    //     stdio: [process.stdin, process.stdout, process.stderr],
+    //     encoding: 'utf-8',
+    //   }
+    // )
   }
 }
 
 main()
-
-// "deploy:npm": "yarn compile && npm publish",
-// "deploy:digikala": "yarn compile && npm publish --registry https://npm.digikala.com"
