@@ -1,6 +1,6 @@
-# digikala/digi-push for React Native
+# dkmobile/digi-push for React Native
 
-**digikala/digi-push** is a derived from [Code Push](https://microsoft.github.io/code-push/). Taking into account the solution to the problems of downloading and uploading the bundle and the desired changes for the users devices.
+**dkmobile/digi-push** is a derived from [Code Push](https://microsoft.github.io/code-push/). Taking into account the solution to the problems of downloading and uploading the bundle and the desired changes for the users devices.
 
 ## Platforms Supported
 
@@ -12,10 +12,10 @@
 **Installation**
 
 ```
-npm i @digikala/digi-push --registry https://npm.pkg.github.com
+npm i @dkmobile/digi-push
 ```
 
-If you are familiar with [CodePush](https://microsoft.github.io/code-push/), you already know how to use `digikala/digi-push`.
+If you are familiar with [CodePush](https://microsoft.github.io/code-push/), you already know how to use `dkmobile/digi-push`.
 
 **android**
 
@@ -45,13 +45,13 @@ Override `sourceURLForBridge` method in `AppDelegate`
 
 **React Native**
 
-Import the `DigiCodePush` from `@digikala/digi-push` and use `DigiCodePush.checkForUpdates` to check and get if new version of bundle exist.
+Import the `DigiCodePush` from `@dkmobile/digi-push` and use `DigiCodePush.checkForUpdates` to check and get if new version of bundle exist.
 
 ```jsx
 import { AppRegistry } from 'react-native'
 import { name as appName } from './app.json'
 import App from './src/App'
-import DigiCodePush from '@digikala/digi-push'
+import DigiCodePush from '@dkmobile/digi-push'
 
 DigiCodePush.checkForUpdates(
   server_url, //your desired server url
@@ -77,7 +77,7 @@ AppRegistry.registerComponent(appName, () => App)
 
 ## CLI
 
-Command Line Interface (CLI) for `digikala/digi-push`.
+Command Line Interface (CLI) for `dkmobile/digi-push`.
 
 **Bundle**
 

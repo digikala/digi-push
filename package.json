@@ -1,5 +1,5 @@
 {
-  "name": "@digikala/digi-push",
+  "name": "@dkmobile/digi-push",
   "version": "1.2.2",
   "description": "React Native plugin for the DigiCodePush service",
   "homepage": "https://github.com/digikala",
@@ -35,7 +35,7 @@
     "compile": "rm -rf lib && tsc -p .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
-    "deploy:github": "node ./scripts/deploy npm=github",
+    "deploy:npm": "node ./scripts/deploy npm=npmjs",
     "deploy:digikala": "node ./scripts/deploy npm=digikala"
   },
   "devDependencies": {

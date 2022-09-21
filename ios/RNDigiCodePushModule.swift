@@ -96,7 +96,7 @@ class RNDigiCodePushModule: NSObject  , SSZipArchiveDelegate  {
         
         resolve(nil)
     }
-    
+
     
     
     @objc

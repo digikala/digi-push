@@ -60,12 +60,12 @@ const main = async () => {
   })
 
   if (npmServer === 'digikala') {
-    await replaceName('digikala/digi-push', 'ravenclaw/app-update')
+    await replaceName('dkmobile/digi-push', 'ravenclaw/app-update')
     await replaceName('digi-push', 'app-update')
-    await replaceName('https://npm.pkg.github.com', 'http://localhost:4873')
+    await replaceName('https://npm.pkg.github.com', 'https://demo-npm.digikala.com')
     await spawnCommand(
       'npm',
-      ['publish', '--registry', 'http://localhost:4873'],
+      ['publish', '--registry', 'https://demo-npm.digikala.com'],
       {
         cwd: process.cwd(),
         env: process.env,
@@ -74,13 +74,13 @@ const main = async () => {
       }
     )
   } else {
-    await replaceName('ravenclaw/app-update', 'digikala/digi-push')
+    await replaceName('ravenclaw/app-update', 'dkmobile/digi-push')
     await replaceName('app-update', 'digi-push')
-    await replaceName('http://localhost:4873', 'https://npm.pkg.github.com')
+    await replaceName('https://demo-npm.digikala.com', '')
 
     await spawnCommand(
       'npm',
-      ['publish', '--registry', 'https://npm.pkg.github.com'],
+      ['publish', '--access', 'public'],
       {
         cwd: process.cwd(),
         env: process.env,

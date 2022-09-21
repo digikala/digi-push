@@ -5,7 +5,7 @@
 import { AppRegistry } from 'react-native'
 import { name as appName } from './app.json'
 import App from './src/App'
-import DigiCodePush from '@digikala/digi-push'
+import DigiCodePush from '@dkmobile/digi-push'
 import { bundleCode } from './package.json'
 import VersionInfo from 'react-native-version-info'
 import { Platform } from 'react-native'

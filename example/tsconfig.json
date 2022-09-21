@@ -7,7 +7,7 @@
     "module": "CommonJS",
     "noEmit": true,
     "paths": {
-      "@digikala/digi-push": ["../src"]
+      "@dkmobile/digi-push": ["../src"]
     },
     "skipLibCheck": true,
     "strict": true,
